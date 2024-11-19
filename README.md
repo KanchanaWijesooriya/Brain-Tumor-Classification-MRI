@@ -1,14 +1,14 @@
-### **Brain Tumor Classification MRI**
+# **Brain Tumor Classification MRI**
 
-### **Brain Tumor Classification Using CNNs**
+## **Brain Tumor Classification Using CNNs**
 
 Link: https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-mri/data
 
-**Introduction**
+### **Introduction**
 
 The notebook presents a deep learning-based approach for classifying brain tumor types using Convolutional Neural Networks (CNNs). The task involves loading and preprocessing brain MRI images, defining a custom CNN model, and evaluating its performance across various metrics. Key steps include data loading, model definition, training, validation, and testing.
 
-**Libraries Used**
+### **Libraries Used**
 
 •	**Data** Handling: os, cv2, numpy
 •	**Deep Learning Framework**: torch, torchvision.transforms
@@ -18,7 +18,7 @@ The notebook presents a deep learning-based approach for classifying brain tumor
 
 These libraries collectively enable robust image preprocessing, model training, and performance evaluation.
 
-**How to run:**
+### **How to run:**
 
 1.	Install NVIDIA GPU Driver, CUDA Toolkit and cuDNN.
 2.	Install PyTorch library.
@@ -27,7 +27,7 @@ These libraries collectively enable robust image preprocessing, model training, 
 5.	Open link.  http://127.0.0.1:5000/
 6.	After you upload the image, it takes some time to predictions.(Depend on your pc specs).
 
-**Folder Structure Should be,**
+### **Folder Structure Should be,**
 
 Brain Tumor/
 
