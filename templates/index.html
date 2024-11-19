@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Disease Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="background">
+    <div class="container">
+      <div class="upload-section">
+        <div class="image-placeholder-container">
+          <div class="image-box">
+            <p class="image-title">Uploaded Image</p>
+            <div class="image-placeholder">
+              <img id="display-image" src="placeholder-icon.png" alt="">
+            </div>
+          </div>
+          <div class="image-box">
+            <p class="image-title">Predicted Image</p>
+            <div class="image-placeholder">
+              <img id="display-image-2" src="{{ url_for('static', filename='placeholder-icon.png') }}" alt="">
+            </div>
+          </div>
+        </div>
+        <input type="text" id="image-path" class="image-path" placeholder="Image path" readonly>
+        <input type="file" id="file-upload" class="upload-btn" accept="image/*">
+        <button class="choose-btn" onclick="document.getElementById('file-upload').click();">Choose</button>
+        <button class="ok-btn" id="analyze-btn" disabled>OK</button>
+        <button class="clear-btn" id="clear-btn">Clear</button>
+        <div class="result" id="result-section" style="display: none;">
+          <p class="alert" id="tumor-detected"></p>
+          <p class="tumor-type" id="tumor-type"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.getElementById('file-upload').addEventListener('change', function(event) {
+      const fileInput = event.target;
+      const file = fileInput.files[0];
+      const filePath = file ? file.name : '';
+      document.getElementById('image-path').value = filePath;
+
+      // Display the image
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('display-image').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+
+        // Enable OK button
+        document.getElementById('analyze-btn').disabled = false;
+      }
+    });
+
+    document.getElementById('analyze-btn').addEventListener('click', async function() {
+      const fileInput = document.getElementById('file-upload');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert('Please choose an image first.');
+        return;
+      }
+    
+      const formData = new FormData();
+      formData.append('image', file);
+    
+      try {
+        const response = await fetch('/predict', {
+          method: 'POST',
+          body: formData,
+        });
+    
+        if (response.ok) {
+          const result = await response.json();
+          document.getElementById('tumor-detected').textContent = result.status;
+          document.getElementById('tumor-type').textContent = result.tumor_type;
+          document.getElementById('result-section').style.display = 'block';
+          
+          if (result.closest_image) {
+            console.log("Predicted image path:", result.closest_image); // Debug log
+            document.getElementById('display-image-2').src = result.closest_image;
+        }
+        } else {
+          document.getElementById('result-section').style.display = 'none';
+          alert('Error analyzing image.');
+        }
+      } catch (error) {
+        alert('An error occurred while sending the image.');
+      }
+    });
+    document.getElementById('clear-btn').addEventListener('click', function() {
+      // Reset the file input
+      document.getElementById('file-upload').value = '';
+    
+      // Reset the main image placeholder
+      document.getElementById('display-image').src = 'placeholder-icon.png';
+    
+      // Reset the additional image field (e.g., 'display-image-2')
+      const additionalImageField = document.getElementById('display-image-2');
+      if (additionalImageField) {
+        additionalImageField.src = 'placeholder-icon.png'; // Reset to placeholder image
+      }
+    
+      // Clear the image path field
+      document.getElementById('image-path').value = '';
+    
+      // Hide and clear the result section
+      const resultSection = document.getElementById('result-section');
+      resultSection.style.display = 'none';
+      document.getElementById('tumor-detected').textContent = '';
+      document.getElementById('tumor-type').textContent = '';
+    
+      // Disable the OK button
+      document.getElementById('analyze-btn').disabled = true;
+    });      
+  </script>
+</body>
+</html>
