@@ -8,6 +8,8 @@ Link: https://www.kaggle.com/datasets/sartajbhuvaji/brain-tumor-classification-m
 
 The notebook presents a deep learning-based approach for classifying brain tumor types using Convolutional Neural Networks (CNNs). The task involves loading and preprocessing brain MRI images, defining a custom CNN model, and evaluating its performance across various metrics. Key steps include data loading, model definition, training, validation, and testing.
 
+![Screenshot 2024-11-20 043133](https://github.com/user-attachments/assets/9fe6747c-b5c1-4cca-975d-215a2594feab)
+
 ### **Libraries Used**
 
 •	**Data** Handling: os, cv2, numpy
@@ -23,9 +25,10 @@ These libraries collectively enable robust image preprocessing, model training, 
 1.	Install NVIDIA GPU Driver, CUDA Toolkit and cuDNN.
 2.	Install PyTorch library.
 3.	Make sure to maintain proper folder/files structure as mentioned, otherwise it’s not working properly.
-4.	Run app.py file. Open terminal and type  python app.py
+4.	Run app.py file. Open terminal and type: python app.py
 5.	Open link.  http://127.0.0.1:5000/
-6.	After you upload the image, it takes some time to predictions.(Depend on your pc specs).
+6.	After you upload the image, it takes some time to predictions.(Depend on your pc specs). If you feel it's not working be patient, It takes some time to get prediction.
+
 
 ### **Folder Structure Should be,**
 
@@ -43,6 +46,11 @@ uploads/
 Number of classes: 4
 
 'glioma_tumor', 'meningioma_tumor', 'no_tumor', 'pituitary_tumor'
+
+![asf](https://github.com/user-attachments/assets/d7784eac-caea-4be0-8749-83f4ce83350a) 
+![afsf](https://github.com/user-attachments/assets/75f90c70-a227-4a7e-a696-1ba01fad763b)
+
+
 
 ### **Parameters and Their Justifications**
 
@@ -865,6 +873,9 @@ A function predicts the type of tumor based on a provided MRI image.
 
 ### Evaluation
 
+![output2](https://github.com/user-attachments/assets/2faba742-eebf-4679-b652-e520c70a7823)
+![output](https://github.com/user-attachments/assets/c5c15339-bc8f-459a-a61d-22c11af8d2b8)
+
 Accuracy: 0.9052 = 90.52%
 
 Precision: 0.9085 = 90.68%
@@ -872,3 +883,9 @@ Precision: 0.9085 = 90.68%
 Recall: 0.9052 = 90.52%
 
 F1-Score: 0.9042 = 90.24%
+
+![asfaf](https://github.com/user-attachments/assets/c3ca18f3-361a-40e9-ac1b-80d1d79edc0c)
+
+Model giving false prediction images and sometimes false predictions, because it's not 100% accurate. But most of the time it giveing correct prediction or most closest predictions.
+
+![Screenshot (235)](https://github.com/user-attachments/assets/d1fa4aa5-ab3b-4b02-919c-eb07e61b057a)
