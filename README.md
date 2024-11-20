@@ -886,6 +886,6 @@ F1-Score: 0.9042 = 90.24%
 
 ![asfaf](https://github.com/user-attachments/assets/c3ca18f3-361a-40e9-ac1b-80d1d79edc0c)
 
-Model giving false prediction images and sometimes false predictions, because it's not 100% accurate. But most of the time it giveing correct prediction or most closest predictions.
+Model giving false prediction images and sometimes false predictions, because it's not 100% accurate. But most of the time its giving correct prediction or most closest predictions. You can open.ipynb, delete existing model and tunning parameters and create better model according to your choice and use that model for getting predictions.
 
 ![Screenshot (235)](https://github.com/user-attachments/assets/d1fa4aa5-ab3b-4b02-919c-eb07e61b057a)
